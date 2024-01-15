@@ -1,0 +1,1536 @@
+//INSTANT C# NOTE: Formerly VB project-level imports:
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.Linq;
+using System.Xml.Linq;
+
+namespace ProductionPlanning.Entities
+{
+	public static class General_Enum
+	{
+		public enum MachineUsageState
+		{
+			Unknown = 1,
+			Used = 2,
+			UnUsed = 3
+			///tets
+			///okokok
+		}
+		//rt011214
+		public enum FormIncompleteProductEnum
+		{
+			Report = 1,
+			Choose = 2
+		}
+		public enum LineTypes
+		{
+			Manufactoring = 1,
+			Packing = 2,
+			Maintenance = 3,
+			LinePacking = 4
+		}
+		//rt011118
+		public enum StarndardQualityPlanMode
+		{
+			Test = 1,
+			Inspection = 2,
+			Readonly = 3
+		}
+		//rt001211
+		public enum TraceBOMEnum
+		{
+			Report = 1,
+			BOMItemClick = 2
+		}
+		//010807
+		public enum MatrialConflictMode
+		{
+			SavePacking = 1,
+			ShowPacking = 2,
+			ShowAllPacking = 3, //el 020621
+			SaveProduct = 4, //el 020629
+			ShowProduct = 5 //el 020629
+		}
+		//RT010308
+		public enum RealBOMEnum
+		{
+			Manu = 1,
+			Packing = 2
+		}
+		//rt010129
+		public enum OPCGroupMode
+		{
+			EditMode = 1,
+			ReadOnlyMode = 2
+		}
+		//rt010330
+		public enum SelectMode
+		{
+			EditMode = 1,
+			Copy = 2,
+			Update = 3 //el 011020
+		}
+		public enum BomMode
+		{
+			VisiblePercent = 1,
+			HidePercent = 2,
+			HideBtn = 3
+		}
+		public enum QCActivityMode //Rt000704
+		{
+			Inspector = 1,
+			Qc = 2
+		}
+		public enum ProductGroupLevels
+		{
+			Group1,
+			Group2,
+			Group3
+		}
+
+		public enum SeasonsEnum
+		{
+			Spring = 1,
+			Summer = 2,
+			Autumn = 3,
+			Winter = 4
+		}
+
+		public enum CheckDataScopeEnum
+		{
+			Yearly,
+			Seasonal,
+			Monthly
+		}
+
+		public enum TimeUnitEnum
+		{
+			Hour = 1,
+			Minute = 2,
+			Second = 3
+		}
+		public enum CheckMaterial
+		{
+			_Reject = 1,
+			_Approve = 2,
+			_Continue = 3
+		}
+
+		public enum ProductCategories
+		{
+			All = 255, // با توجه به اين كه نوع اين فيلد در بانك TinyInt ميباشد و نوع نگاشت شده آن در entityFrameWork Byte ميباشد، و اين نوع داده بدون علامت ميباشد، از 255 به جاي -1 استفاده شده است.
+					   //ماده اوليه ساخت
+			ManufacturingPrimary = 1,
+
+			//ماده اوليه بسته بندي
+			PackingPrimary = 2,
+
+			//ماده نيمه ساخت
+			SemiManufactured = 3,
+
+			//ماده ساخت نهايي
+			Manufactured = 4,
+
+			//نيمه بسته بندي
+			SemiPacked = 5,
+
+			//محصول نهايي
+			FinalProduct = 6
+
+		}
+
+		/// <summary>
+		/// وجود واحد کیلوگرم در بین واحدهای فرعی یا اصلی محصول
+		/// </summary>
+		/// <remarks></remarks>
+		public enum KiloGramUnitExistanceEnum
+		{
+			/// <summary>
+			/// هر دو - شامل همه محصولات اعم از اقلام دارای واحد فرعی و فاقد واحد فرعی
+			/// </summary>
+			/// <remarks></remarks>
+			Both,
+
+			/// <summary>
+			/// دارای واحد کیلوگرم
+			/// </summary>
+			/// <remarks></remarks>
+			Exist,
+
+			/// <summary>
+			/// فاقد واحد کیلوگرم
+			/// </summary>
+			/// <remarks></remarks>
+			NotExist
+		}
+
+		public enum ProcessStepEnum
+		{
+			None = 0,
+			Maunufacturing,
+			Packing,
+
+			S101_SendTheProductionProcess = 101, //HN 99-04-02
+
+			S102_SaveBasicInformation = 102, //HN 99-04-02
+
+			S103_ProductManagerApprovedStartProduction = 103, //HN 99-04-03
+
+			S104_MakingSample = 104, //HN 99-04-03
+
+			S105_SamplingWaitForLabResponse = 105, //RT 99-05-12
+
+			S106_RecordCpData = 106,
+
+			S107_ProductManagerApprovedFinishProduction = 107,
+
+			S108_QCManagerApprovedFinishProduction = 108,
+
+			S109_QCManagerCorrectionConflict = 109, //Ash 99-06-11
+			S110_QCManagerEditCp = 110, //RT991112
+										// S111_CheckMaterialOutOfBOM = 111 'RT000407
+			S112_ConfirmByManager = 112, //rt000601
+			S113_CheckByPackingPlanner = 113, //rt000601
+			S117_TransferToHolder = 117,//rt010916
+			S114_communicatedPacking = 114, //rt000602
+			S118_Improvement = 118,//rt0109122
+			S119_PlanningPacking = 119,//rt011027
+			S120_PlanningPacking = 120,//rt011027
+			S121 = 121,//Ash 02-04-21
+			S122 = 122,//Ash 02-04-24
+
+			//MBS 98-11-06
+			S201_SubmitLabRequest = 201,
+
+			S202_LabManagerConfirmation = 202,
+
+			S203_AssignmentOfExaminerAndDeterminationOfTime = 203,
+
+			S204_PendingTests = 204,
+
+			S205_FinalConfirm = 205,
+
+			S301_StartTheTestingProcess = 301,
+
+			S302_TesterDoTheTest = 302,
+
+			S303_ReviewAndConfirmTheTestResults = 303,
+
+			S304_SendToLabManager = 304,
+
+			S305_TestingProcessEnd = 305,
+			//END MBS 98-11-06
+
+			//Ash 99-06-24
+			S401_SendWeeklyPlan = 401,
+
+			S402_CheckBom = 402,
+
+			S403_SendWeeklyPlantoProductionManager = 403,
+
+			S404_Constraction_Plan = 404,
+
+			S405_Packing_plan = 405,
+
+			S406_Confirm_plan = 406,
+
+			S407_Confirm_Managger = 407, //rt991003
+
+			S501_SendLicenseRequest = 501, //RT991202
+
+
+			S502_CheckLicenseRequest = 502, //RT991202
+			S503_CheckProductInventory = 503,
+			S504_EndOfLicsence = 504,
+			S601_Appointpackaginginspector = 601, //RT991214
+			S602_Performpackaginginspection = 602, //'RT991214
+			S603_DonPacking = 603, //'RT991214
+			S604_ApprovedInspectionItem = 604, //RT000207
+			S605_UnadaptedLicense = 605, //RT000707
+			S111_CheckMaterialsOutsideOfBOM = 111, //RT000407
+												   //rt000603
+			S701_SendThePackingProcess = 701,
+			S702_QCManager = 702,
+			S703_RecordCpDataPacking = 703,
+			S704_PerformpackaginginspectionPacking = 704, //rt000609
+			S705_ResolvedConflict = 705, //rt0000710
+			S706_QCManagerApprovedFinishPacking = 706, //rt000728
+			S710_EndOfPacking = 710,
+			S801_SendRequest = 801,
+			S802_Appointpackaginginspector = 802, //rt000703
+			S803_DoneRawMaterial = 803, //rt000703
+			S804_EndPasckingOfRaewMaterial = 804, //rt000704
+			S805_UnadaptedLicense = 805, //RT000706
+			S115_TakeSampling = 115, //rt000724
+			S116_NeedToFlash = 116, //rt000830
+			S901_Send = 901, //rt000826
+			S902_GetSampling = 902, //rt000826
+			S1001_SendFlashRequest = 1001, //rt000830
+			S1002_Flashing = 1002, //rt000830
+			S1003_FinishFlashing = 1003, //rt000901
+			S1004_Weighing = 1004, //rt000915
+			S2001_SendRequestForUpgradePriority = 2001, //rt010311
+			S2002_ConfirmationUpgradePriority = 2002, //rt010311
+			S3001_SemiMnaufacturedPascking = 3001, //rt010324
+			S4001_StartSaleContractor = 4001, //rt010612
+			S4002_DeterminingBOM = 4002, //rt010612
+			S4003_DeterminingTimeDesirable = 4003, //rt010612
+			S4004_FinishSaleContractor = 4004, //rt010612
+											   //RT010710
+			S5001_DeterminingTheSubstituteProduct = 5001,
+			S5002_AlternativeProductApproval = 5002,
+			S5003_AlternativeProductFeasibility = 5003,
+			S5004_CompletionOfTheStage = 5004,
+			S5005_GetBatchNo = 5005,//rt010719
+									//RT010923
+			S6001_DefinitionBOM = 6001,
+			S6002_DefinitionOfProductItems = 6002,
+			S8001_InspectionStandard = 8001,//rt011119
+			S8002_Finish = 8002,//rt011119
+
+			//Ash 01-11-23
+			S7001 = 7001,
+			S7002 = 7002,
+			S7003 = 7003,
+			S7004 = 7004,
+			S7005 = 7005,
+			S7006 = 7006,
+			S7007 = 7007,
+			S7008 = 7008,
+			S7009 = 7009,
+			S70010 = 70010,
+			S70011 = 70011,
+			S70012 = 70012,
+			S70013 = 70013,
+			S70014 = 70014,
+			S70015 = 70015,
+			S70016 = 70016,
+			S70017 = 70017,
+			S70018 = 70018,
+			S70019 = 70019,
+			S70020 = 70020,
+			S70021 = 70021,
+			S70022 = 70022,
+			S70023 = 70023,
+			S70024 = 70024,
+			S70025 = 70025,
+			S70027 = 70027,
+			S70028 = 70028,
+			S9001 = 9001,
+			S9002 = 9002,
+			S10001 = 10001,
+			S10002 = 10002,
+			S10003 = 10003,
+			S11001 = 11001,
+			S11002 = 11002,
+			S11003 = 11003,
+			S12001 = 12001,
+			S12002 = 12002,
+			S12003 = 12003,
+			S11004 = 11004,
+			S70026 = 70026,
+			S70029 = 70029,
+			S13001 = 13001,
+			S13002 = 13002,
+			S13003 = 13003,
+			S13004 = 13004,
+			S13005 = 13005
+			}
+
+		public enum RelationKindEnum
+		{
+			FF,
+			SS,
+			FS,
+			SF
+		}
+
+		//INSTANT C# NOTE: C# does not support parameterized properties - the following property has been rewritten as a function:
+		//ORIGINAL LINE: Public ReadOnly Property RelationKindEnumVal(Key As RelationKindEnum) As String
+		public static string RelationKindEnumVal(RelationKindEnum Key)
+		{
+			switch (Key)
+			{
+				case RelationKindEnum.FF:
+					return "FF";
+
+				case RelationKindEnum.FS:
+					return "FS";
+
+				case RelationKindEnum.SF:
+					return "SF";
+
+				case RelationKindEnum.SS:
+					return "SS";
+
+				default:
+					return "";
+
+			}
+		}
+		//010916
+		public enum TransferMode
+		{
+			TransferToHolder = 1,
+
+			EmptyTheHolder = 2
+		}
+		public enum StepKindEnum
+		{
+			Maunufacturing,
+			QualityControl,
+			Setup,
+			Cleaning,
+			Packing
+		}
+
+		//INSTANT C# NOTE: C# does not support parameterized properties - the following property has been rewritten as a function:
+		//ORIGINAL LINE: Public ReadOnly Property StepKindEnumVal(Key As StepKindEnum) As String
+		public static string StepKindEnumVal(StepKindEnum Key)
+		{
+			switch (Key)
+			{
+				case StepKindEnum.Cleaning:
+					return "C";
+
+				case StepKindEnum.Maunufacturing:
+					return "M";
+
+				case StepKindEnum.QualityControl:
+					return "Q";
+
+				case StepKindEnum.Setup:
+					return "S";
+
+				case StepKindEnum.Packing:
+					return "P";
+
+				default:
+					return "";
+
+			}
+		}
+
+		public enum BatchKindEnum
+		{
+			Constant = 1,
+			Variable = 2
+		}
+
+		public enum TankTypeEnum
+		{
+			Connected = 1,
+			Disonnected = 2
+		}
+
+		public enum WorkOrderMode
+		{
+			Planning,
+			Manufacture,
+			Packing,
+			Manufacture_ReadOnly,
+			Packing_ReadOnly
+		}
+
+		public enum ProductActiveState
+		{
+			All = -1,
+			DeActive = 0,
+			Active = 1
+		}
+
+		public enum PersonelRoleState
+		{
+			All = -1,
+			DeActive = 0,
+			Active = 1
+		}
+
+		public enum WorkOrderState : byte
+		{
+			/// <summary>
+			/// ابلاغ نشده
+			/// </summary>
+			/// <remarks></remarks>
+			NotNotified = 1,
+
+			/// <summary>
+			/// انجام نشده
+			/// </summary>
+			/// <remarks></remarks>
+			Undone = 2,
+
+			// ''' <summary>
+			// ''' شروع برنامه
+			// ''' </summary>
+			// ''' <remarks></remarks>
+			//Start = 4
+
+			/// <summary>
+			/// انجام شده
+			/// </summary>
+			/// <remarks></remarks>
+			Done = 3,
+
+			/// <summary>
+			/// لغو برنامه
+			/// </summary>
+			/// <remarks></remarks>
+			Canceled = 4
+
+			//CurrentPlanning = 4 'جاری برنامه ريزي
+			//CurrentOperational = 5 'جاري واحد عملياتي
+		}
+
+		public enum WorkOrderOriginKind
+		{
+			StockNeed = 1,
+			CustomersRequest = 2,
+			Planning = 3,
+			Predict = 4, //rt000302
+			ProductionRequest = 5, //rt000810
+			inquiry = 6, //rt010524
+			Contract = 7, //rt010612
+			System = 8 //rt010629
+		}
+
+		public static string[] WorkOrderOriginKindTitle { get; set; } = new string[] { "", "نیاز انبار", "سفارش مشتری", "برنامه ریزی" };
+
+		public enum WorkOrderActivityKind
+		{
+			IncludesLoading = 1,
+			Manufacture = 2,
+			FirstTest = 3,
+			Repaire = 4,
+			RepaireTest = 5,
+			Transfer = 6,
+			Discharge = 7,
+			Noun = 8
+		}
+
+		//وضعيت خاتمه اقلام برنامه دوره اي
+		public enum PlanItemCompletionState
+		{
+			All = -1,
+			Completed = 1,
+			UnDone = 0
+		}
+
+		public enum PeriodicPlanTurnLevel
+		{
+			Provide,
+			Confirm,
+			Register
+		}
+
+
+		public enum FormMode
+		{
+			Selection, //حالت انتخاب
+			DataEntry, //حالت ورود اطلاعات
+			ReadOnlyMode //حالت فقط خواندني
+		}
+
+		public enum ProductGroupType
+		{
+			OneLevel,
+			ThreeLevel
+		}
+
+		public enum PlanStateEnum
+		{
+			All = 255,
+
+			/// <summary>
+			/// پيش نويس دوره پيش بيني كه براي ادامه مراحل نياز به تاييد اوليه دارد
+			/// </summary>
+			/// <remarks></remarks>
+			Draft = 1,
+
+			/// <summary>
+			/// در وضعيت ذخيره كاربر واردكننده نميتواند پيش بيني را ويرايش كند،
+			///  مگر آنكه كاربري كه ميبايست پيش بيني را تاييد كند، آن را عودت دهد
+			///  و يا آن را تاييد كرده تا كاربر تصويب كننده آن را ببيند
+			/// </summary>
+			/// <remarks></remarks>
+			Confirmed_1 = 2,
+
+			/// <summary>
+			/// در اين وضعيت فقط كاربر تصويب كننده مي تواند پيش بيني را تصويب كند يا آن را عودت دهد.
+			/// در صورت عودت پيش بيني به كارتابل تاييد كننده باز ميگردد.
+			/// و در صورت تصويب پيش بيني لازم الاجرا ميباشد.
+			/// </summary>
+			/// <remarks></remarks>
+			Confirmed_2 = 3,
+
+			Approved = 4
+		}
+
+		//Public Enum DemandPredictionStatus
+		//    All = 255
+
+		//    Past = 1
+		//    Present = 2
+		//    Future = 3
+		//End Enum
+
+		public enum PredictFormMode
+		{
+			DataEntry = 1,
+			Confirm = 2,
+			Approve = 3
+		}
+
+		public enum PlanFormMode
+		{
+
+			/// <summary>
+			/// وارد كردن برنامه با توجه به يك پيش بيني در بخش مربوطه
+			/// </summary>
+			/// <remarks></remarks>
+			DataEntry = 1,
+
+			/// <summary>
+			/// تاييد
+			/// </summary>
+			/// <remarks></remarks>
+			Confirm = 2,
+
+			/// <summary>
+			/// تصويب
+			/// </summary>
+			/// <remarks></remarks>
+			Approve = 3,
+
+			/// <summary>
+			/// پيش بيني به همراه برنامه ريزي(ري سان)
+			/// </summary>
+			/// <remarks></remarks>
+			WithPredict = 4
+		}
+
+		/// <summary>
+		/// منبع اقلام برنامه ريزي براي برآورد نياز به مواد
+		/// </summary>
+		/// <remarks></remarks>
+		public enum PlanSourceKind
+		{
+			Periodic = 1,
+			Year = 2,
+			Qurter = 3,
+			Month = 4
+		}
+		//RT001004
+		public enum PauseMode
+		{
+			Manufactured = 1,
+			Packing = 2
+		}
+		public enum MonthsEnum
+		{
+			Farvardin = 1,
+			Ordibehesht = 2,
+			Khordad = 3,
+			Tir = 4,
+			Mordad = 5,
+			Shahrivar = 6,
+			Mehr = 7,
+			Aban = 8,
+			Azar = 9,
+			Dey = 10,
+			Bahman = 11,
+			Esfand = 12
+		}
+
+		/// <summary>
+		/// وضعيت مغايرت
+		/// </summary>
+		/// <remarks></remarks>
+		public enum VarianceState
+		{
+			/// <summary>
+			/// همه
+			/// </summary>
+			/// <remarks></remarks>
+			All = 1,
+
+			/// <summary>
+			/// فقط اقلام داراي مغايرت
+			/// </summary>
+			/// <remarks></remarks>
+			WithVariance = 2,
+
+			/// <summary>
+			/// فقط اقلام فاقد مغايرت
+			/// </summary>
+			/// <remarks></remarks>
+			WithoutVariance = 3
+		}
+
+		public enum WorkOrderAction
+		{
+			Add,
+			Delete,
+			Save
+		}
+
+		public enum TransferWorkOrderOpenMode
+		{
+			TransferWorkOrder,
+			TransferReport,
+			ReadonlyView_Both
+		}
+		//MBS 98-11-05
+		//1:درخواست خط تولید  
+		//2:درخواست مشتری  
+		//3:درخواست استاندارد  
+		//4:درخواست خدمات مهندسی  
+		//5:پایش دوره ای  
+		//6:پایش موردی  
+		//7:طرح تکوین
+
+		public static Dictionary<LabRequestOrigin, string> LabTestOriginTitle = new Dictionary<LabRequestOrigin, string>()
+		{
+			{LabRequestOrigin.None, "کلیه درخواست ها"},
+			{LabRequestOrigin.ProductionLine, "درخواست خط تولید"},
+			{LabRequestOrigin.Customer, "درخواست مشتری"},
+			{LabRequestOrigin.Standard, "درخواست استاندارد"},
+			{LabRequestOrigin.Development, "طرح تکوین"},
+			{LabRequestOrigin.RawMaterial, "درخواست مواد اولیه"},
+			{LabRequestOrigin.DevelopmentAfRN, "طرح تکوین افزون روان"},
+			{LabRequestOrigin.TechnicalAdvice, "ثبت نظر فنی مهندسی "},
+			{LabRequestOrigin.PackingLine, "درخواست بسته بندی"},
+			{LabRequestOrigin.RawMaterialPacking, "درخواست مواد اولیه "},
+			{LabRequestOrigin.Flashing, "درخواست فلش"},
+			{LabRequestOrigin.CustomerClaim, "درخواست شکایت مشتری"},
+			{LabRequestOrigin.Prototyping , "نمونه سازی"},//el 020323
+			{LabRequestOrigin.FinalProduct  , "درخواست محصول نهایی"} //el 021003
+		};
+		//{LabRequestOrigin.EngineeringServices, "درخواست خدمات مهندسی"},     Ash 99-06-10
+		//{LabRequestOrigin.PeriodicMonitoring, "پایش دوره ای"},
+		//{LabRequestOrigin.CaseMonitoring, "پایش موردی"},
+
+		public enum PrintMode
+		{
+			WithView = 1,
+			Whithout = 2
+		}
+		public enum LabRequestOrigin
+		{
+			None = 0,
+			ProductionLine = 1,
+			Customer = 2,
+			Standard = 3,
+			EngineeringServices = 4,
+			PeriodicMonitoring = 5,
+			CaseMonitoring = 6,
+			Development = 7,
+			RawMaterial = 8,
+			DevelopmentAfRN = 9, //RT990926
+			TechnicalAdvice = 10, //MMT 99-10-01
+			PackingLine = 11, //rt000609
+			RawMaterialPacking = 12, //rt000628
+			Flashing = 13, //rt000921
+			CustomerClaim = 14,//rt010504
+			Prototyping = 15, //el 020323
+			FinalProduct = 16 
+		}
+		//el 020427
+		public enum OriginForovertime
+		{
+			ProductionLine = 1,
+			PackingLine = 11, //rt000609
+			Flashing = 13, //rt000921
+			Prototyping = 15 //el 020323
+		}
+
+		public static Dictionary<byte, string> RequestStandardTypeTitle = new Dictionary<byte, string>()
+		{
+			{(byte)StandardType.Mandatory, "اجباری"},
+			{(byte)StandardType.Persuasive, "تشویقی"},
+			{(byte)StandardType.Comparative, "تطبیقی"}
+		};
+		//1:اجباری  
+		//2:تشویقی  
+		//3:تطبیقی   
+		public enum StandardType
+		{
+			Mandatory = 1,
+			Persuasive = 2,
+			Comparative = 3
+		}
+		//el 020310
+		public enum CustomerClaimMode
+		{
+			Readonly = 1,
+			Edit = 2
+		}
+		//el 020828
+		public enum QualityModeForm
+		{
+			ReadonlyAndForOne = 1,
+			Edit = 2
+		}
+		//el 020905
+		public enum FormProductMode
+		{
+			Pricing = 1,
+			Production = 2
+		}
+		//el 021003
+		public enum FormRawMatRepMode
+		{
+			Raw = 1,
+			Final = 2
+		}
+		public enum QualityMode
+		{
+			QualityPlan = 1,
+			RawMaterialQualityPlan = 2,
+			Packing = 3, //RT991211
+			InspectionRawMaterial = 4,
+			FinalProduct=5, //el 020928
+			InspectionFinalProduct = 6 //el 020928
+		}
+		public enum WorkFlowActionTypeEnum
+		{
+			Non = 0,
+
+			/// <summary>
+			/// تایید و ارسال به مرحله بعد
+			/// </summary>
+			/// <remarks></remarks>
+			Confirm = 1,
+
+			/// <summary>
+			/// ارسال به مرحله قبل
+			/// </summary>
+			/// <remarks></remarks>
+			Return = 2,
+
+			/// <summary>
+			/// توقف و بایگانی
+			/// </summary>
+			/// <remarks></remarks>
+			Reject = 3,
+
+			/// <summary>
+			/// خاتمه
+			/// </summary>
+			/// <remarks></remarks>
+			Finilized = 4
+		}
+		public enum WorkFlowProcessEnum
+		{
+
+			Production = 1, //HN 99-04-02
+
+			LabRequest = 2,
+
+			LabRequestTest = 3,
+
+			WeeklyPlan = 4,
+			License = 5, //RT991203
+			QCRequest = 6,
+			PackingLine = 7, //rt000606
+			QC_RequestRawMat = 8, //rt000703
+			Lab_RequestGetSample = 9, //rt000826
+			PrP_Flashing = 10, //rt000830
+			PrP_WeeklyPlanItem = 12, //rt010311
+			PrP_WeeklyPlanItemPackingRoutine = 16,//rt010710
+			QC_RequestStandard = 19, //rt011119
+			Crm_CustomerRequest = 18, //Ash 01-11-23
+			Lab_Development = 20,//el 011126
+			Crm_Task = 21, //Ash 02-03-06
+			Crm_Contact = 22, //Ash 02-03-06
+			Crm_Call = 25, //Ash 02-03-16
+			QC_RequestFinalProduct = 26
+		}
+		public enum CartableNodeTypeEnum
+		{
+			Process = 1,
+			Role = 2,
+			Step = 3
+		}
+
+
+		public static string EntityKindTitle(EntityKindEnum Entitykind)
+		{
+			switch (Entitykind)
+			{
+				case EntityKindEnum.None:
+					return "None";
+				case EntityKindEnum.LabRequest:
+					return "درخواست آزمایش";
+			}
+			return string.Empty;
+		}
+
+		public enum EntityKindEnum
+		{
+			None = 0,
+
+			//HN 99-04-02
+			WorkOrder = 1,
+
+
+			//MBS 981114
+			LabRequest = 2, //AT 99-05-16 : TestRequest = 2
+
+			LabReqTest = 3, //AT 99-05-16 : TestRequestItem = 3
+							//END MBS 981114
+			CpActivitySampling = 4,
+
+			BOM_OP = 5,
+
+			//Ash 99-06-05
+			Lab_DevSample = 6,
+			//Ash 99-06-23
+			PrP_WeeklyPlan = 7,
+			PrP_License = 9, //RT991203
+			PrP_PlanItem = 10, //RT991204
+			QC_Request = 11,
+			//Ash 00-02-21
+			QC_QualityPlan = 14,
+			Lab_StandardQualityPlan = 15,
+			Com_note = 16,
+			//Ash 00-03-10
+			Lab_Development = 17,
+			Lab_DevSampleTest = 18,
+			PrP_WorkOrderPaking = 19,
+			QC_RequestRawMaterial = 20, //rt000703
+			Lab_RequestGetSample = 21, //rt000826
+			PrP_Flashing = 22, //rt000830
+			PrP_WeeklyPlanItem = 23, //RT010311
+			PrP_WorkOrderSemi = 24,
+			//rabti b entiti in mored nadare
+			// baraye yadasht ezafe shode ast
+			//rt001218
+			Pcl_CpActivity = 100,
+			PrP_CutomerClaim = 25,
+			PrP_SaleContract = 26, //rt010609
+			PrP_WeeklyPlanItemPackingRoutine = 27, //rt010711
+			PrP_WorkOrderPackingRoutine = 28, //rt010711
+			PrP_Product = 29,//rt010923
+			Crm_CustomerRequest = 30,//el 011116
+			QC_RequestStandard = 31,//rt011119
+									//Crm_CustomerCertificateReq = 31, //el 011111
+			Crm_Contact = 32,
+			//el 010919 rt010923 b elat ink elam nashode bud va dar table asli entity nabud 
+
+			//Ash 01-12-10
+			Crm_CustomerCertificateDetails = 33,
+			//Ash 02-03-07
+			Crm_Task = 34,
+			//Ash 02-03-16
+			Crm_Call = 36,
+			//Ash 02-03-20
+			Flw_WorkFlow = 37,
+			//Ash 02-04-10
+			Crm_DataSheet = 38,
+			//el 020517
+			Com_Personel = 39,
+			//Ash 02-06-26
+			Com_Tag = 40,
+			//el 020928
+			QC_RequestFinalProduct = 41
+		}
+		public enum ProcessRoleEnum : int
+		{
+			/// <summary>
+			/// هیچ کدام
+			/// </summary>
+			/// <remarks></remarks>
+			None = 0,
+
+			LabManager = 4,
+
+			LabTechnicalManager = 5, //MBS 971114
+
+			Tester = 9,
+
+			Customer = 21, //Ash 01-11-24
+		}
+
+		//Ash 01-12-01
+		public enum ColorEnum : int
+		{
+			/// <summary>
+			/// آبی
+			/// </summary>
+			/// <remarks></remarks>
+			LightBlue = 1,
+			/// <summary>
+			/// نارنجی
+			/// </summary>
+			/// <remarks></remarks>
+			Orange = 2,
+			/// <summary>
+			/// سفید
+			/// </summary>
+			/// <remarks></remarks>
+			White = 3,
+			/// <summary>
+			/// مشکی
+			/// </summary>
+			/// <remarks></remarks>
+			Black = 4,
+		}
+
+		public static Dictionary<ResultKindEnum, string> ResultKindTitle = new Dictionary<ResultKindEnum, string>()
+		{
+			{ResultKindEnum.Quantitative, "کمی"},
+			{ResultKindEnum.Qualitative, "کیفی"},
+			{ResultKindEnum.Analysis, "تحلیلی"},
+			{ResultKindEnum.Graph, "گراف"}
+		};
+		public enum ResultKindEnum
+		{
+			Quantitative = 1,
+			Qualitative = 2,
+			Analysis = 3,
+			Graph = 4,
+			MultiAnswerTests = 5 //rt000719
+		}
+
+		public static Dictionary<ResultTypeEnum, string> ResultTypeTitle = new Dictionary<ResultTypeEnum, string>()
+		{
+			{ResultTypeEnum.Calculation, "محاسباتی"},
+			{ResultTypeEnum.Operation, "عملیاتی"}
+		};
+		public enum ResultTypeEnum
+		{
+			Operation = 1,
+			Calculation = 2
+		}
+
+		public static Dictionary<TechnicalManagerStatusEnum, string> TechnicalManagerStatusTitle = new Dictionary<TechnicalManagerStatusEnum, string>()
+		{
+			{TechnicalManagerStatusEnum.NotSpecified, ""},
+			{TechnicalManagerStatusEnum.Accept, "تایید جواب"},
+			{TechnicalManagerStatusEnum.Return, "انتخاب مجدد آزمونگر و اولویت"},
+			{TechnicalManagerStatusEnum.UndoChanges, "لغو انتخاب مجدد"}
+		};
+		public enum TechnicalManagerStatusEnum
+		{
+			NotSpecified = 0,
+			Accept = 1,
+			Return = 2,
+			UndoChanges = 3
+		}
+		public static Dictionary<TestStatusEnum, string> TestStatusEnumTitle = new Dictionary<TestStatusEnum, string>()
+		{
+			{TestStatusEnum.NotSent, "فرستاده نشده"},
+			{TestStatusEnum.Pending, "در حال انجام"},
+			{TestStatusEnum.Failed, "رد شده"},
+			{TestStatusEnum.Finished, "خاتمه یافته"}
+		};
+		public enum TestStatusEnum
+		{
+			NotSent = 0,
+			Pending = 1,
+			Finished = 2,
+			Failed = 3
+		}
+		//RT 99-05-12
+		public static Dictionary<QCDecisionEnum, string> QCDecisionDic = new Dictionary<QCDecisionEnum, string>()
+		{
+			{QCDecisionEnum.Unknown, ""},
+			{QCDecisionEnum.NeedToSample, "ارسال به نمونه سازی"},
+			{QCDecisionEnum.ApprovedBomAndNotify, "تایید BOM عملیاتی و ابلاغ به مدیر تولید"},
+			{QCDecisionEnum.ImpossibilityOfProduction, "عدم امکان تولید"} //el 020213 وقتی که نمونه سازی به هر دلیلی درست انجام نشده اگر برگشت بزنیم به نمونه سازی برمیگرده ولی میخوایم بره به دست پوشنه
+		};
+
+		//Ash 99-06-22
+		public static Dictionary<DecisionEnum, string> DecisionDic = new Dictionary<DecisionEnum, string>()
+		{
+			{DecisionEnum.Unchanged, ""},
+			{DecisionEnum.Approved, "تأیید"},
+			{DecisionEnum.Rejected, "رد"}
+		};
+		//Ash 99-06-22
+		public enum DecisionEnum
+		{
+			Unchanged = 0,
+			Approved = 1,
+			Rejected = 2
+		}
+		//rt000830
+		public enum FlashingType
+		{
+			Oil = 1,
+			//AntiFreeze = 2,
+			Meg = 2, //el 021010
+			Gasoline = 3, //rt000909
+			Water = 4, //rt001008
+			GasolineOil = 5, //rt001013
+			Production = 6, //rt011004
+			Antifreeze =7 //el 021010
+		}
+		//rt000927
+		public enum FlashingStatus
+		{
+			Flashing = 1,
+			NoNeedForFlashing = 2,
+			ReferToQC = 3
+		}
+		//el 020219 به جاش جدول PrP_HatseAndDelay رو گذاشتم
+		//public enum HatseAndDelay
+		//{
+		//	Request = 1,
+		//	Formula = 2,
+		//	TransferBelender = 3,
+		//	DeletePlannedProduct = 4,
+		//	EditLastProduct = 5,
+		//	FailureToIssueFormulations = 6,
+		//	FailureToApproveThePreviousProduct = 7,
+		//	ChangingTheProgramFromThePlanningSide = 8,
+		//	DelaysInTheProductionOfPreviousProducts = 9,
+		//	WrongPlanning = 10,
+		//	FailureToProvideWarehouseForWorkOnTime = 11,
+		//	CancelTheProductionOfPreviousProducts = 12,
+		//	MovingTheProgramFromNextWeek=13
+		//}
+		public enum QCDecisionEnum
+		{
+			Unknown = 0,
+			NeedToSample = 1,
+			ApprovedBomAndNotify = 2,
+			ImpossibilityOfProduction = 3
+		}
+		//RT 99-05-12
+		public static Dictionary<MakedSampleEnum, string> MakedSample = new Dictionary<MakedSampleEnum, string>()
+		{
+			{MakedSampleEnum.NotSpecified, ""},
+			{MakedSampleEnum.MakedSample, " نمونه ساخته شده"}
+		};
+		public enum MakedSampleEnum
+		{
+			NotSpecified = 0,
+			MakedSample = 1
+		}
+		//rt010801
+		public enum ProductFinalMode
+		{
+			Save = 1,
+			Show = 2
+		}
+
+		//el 011013
+		public enum AllProductPrices
+		{
+			MaterialPrices = 1,
+			DetailPrices = 2
+		}
+
+		//el 011028
+		public enum CompetitorMode
+		{
+			ReadOnly = 1,
+			Edit = 2
+		}
+
+		public enum BOMKindEnum
+		{
+			Basic = 1,
+			Operational = 2,
+			Development = 3, //Ash 99-06-02
+			Real = 4 //rt001120
+		}
+
+		//Ash 99-03-12
+		public enum CpKindEnum
+		{
+			Opc = 1,
+			Cp = 2,
+			CpOp = 3,
+			CPPacking = 4, //rt000613
+			CPPackingOp = 5 //rt000613
+
+		}
+		//rt001013
+		public enum CpKind
+		{
+			ReadOnlyCp = 1,
+			NormalCP = 2
+		}
+
+		//RT 99-06-25
+		public enum WeeklyPlanItemKindEnum
+		{
+			Planning = 1,
+			EditByPlanner = 2,
+			Eng = 3,
+			ProductManager = 4,
+			Managger = 5,
+			Packing = 6 //rt000607
+		}
+
+		//Ash 99-04-16
+		public enum CpOpEnum
+		{
+			EditByQc = 1,
+			Recording = 2,
+			//Ash 99-05-22
+			AdvanceReadOnly = 3,
+			NormalReadOnly = 4,
+			CPPackinOpReadOnly = 5 //rt000613
+		}
+		//rt000613
+		public enum CpOpPackingEnum
+		{
+			Foundation = 1,
+			InspectorOP = 2
+
+		}
+		public enum QCModeEnum
+		{
+			EditCpByQc = 1,
+			CorrectionCpByQc = 2,
+			SamplingQC = 3, //rt000724
+			ImprovementQC = 4 //rt010922
+		}
+
+		public enum CpActivityKindEnum //AT 99-04-07
+		{
+			Material = 1,
+			Process = 2,
+			Control = 3,
+			Inspection = 4,
+			Sampling = 5
+		}
+		public enum EnumResultType //RT 99-09-17
+		{
+			Quantitative = 1, //کمی
+			Qualitative = 2, //کیفی
+			Analysis = 3,
+			Graph = 4,
+			MultiResultTest = 5
+		}
+
+		//RT990622
+		public enum WeeklyPlnItemPriority
+		{
+			A = 1,
+			B = 2,
+			C = 3
+		}
+		public enum AmendmentStatusEnum //RT010614
+		{
+
+			CompletionOfProductionCapacity = 1,
+
+			ModificationOfTheAnnouncedProgramAtTheRequestOfThePlanningUnit = 2,
+			UrgentRequestForSalesUnit = 3,
+
+			RequestForQualityControlUnit = 4,
+
+			ProductionUnitRequest = 5,
+			WarehouseUnitRequest = 6,
+			ModificationOfTheBasicFormula = 7
+		}
+
+		//RT990631
+		public enum NewWorkOrderMode
+		{
+			EditByproductionManager = 1,
+			ReadOnlyMode = 2,
+			EditByproductionManagerPacking = 3, //rt000601
+			ReadOnlyByproductionManagerPacking = 4 //rt000609
+		}
+		public enum GroupMmemberTest //RT990915
+		{
+			NomralMode = 1,
+			ReadOnlyMode = 2
+		}
+		public enum DevelopmentMode //RT990926
+		{
+			NomralMode = 1,
+			AfzonRavanMode = 2,
+			CustomerRequestMode = 3//el 011125
+		}
+		public enum ReqTestIterElemenEnum //RT990930
+		{
+			TestMode = 1,
+			LabMode = 2
+		}
+		public enum PauseTimeModeEnum //el 020306
+		{
+			AllProduction = 1,
+			AllPacking = 2,
+			ForOne = 3
+		}
+		public enum KindOfReqTestIterElemenEnum //RT000719
+		{
+			Analys = 1,
+			MultiTests = 2
+		}
+		public enum DevelopmentState //RT991029
+		{
+			All = 1,
+			Archive = 2,
+			UnArchive = 3
+		}
+		public enum EnumEng //RT991204
+		{
+			Unknown = 0,
+			Approved = 1
+			//Reject = 2'RT000117
+		}
+		//RT991204
+		public static Dictionary<EnumEng, string> EngDic = new Dictionary<EnumEng, string>()
+		{
+			{EnumEng.Unknown, ""},
+			{EnumEng.Approved, "تایید"}
+		};
+		//{EnumEng.Reject, "رد"}'RT000117
+		//rt010515
+		public enum ProductDraft
+		{
+			AddNew = 1,
+			edit = 2,
+			read = 3
+		}
+		public enum EnumWeeklyRep //RT991220
+		{
+			WeekNo = 1,
+			WeeklyPlanItem = 2,
+			YearNo = 3
+		}
+		public enum StatusEnum //RT000123
+		{
+			Unknown = 0,
+			Approved = 1,
+			Reject = 2
+		}
+		public enum KindOfPause //RT000628
+		{
+			Edit = 1,
+			ReadOnlyPause = 2
+		}
+		public enum ModeWareHouse //RT000711
+		{
+			WareHouse = 1,
+			sale = 2
+		}
+		public enum ProductPerformance //el 021005
+		{
+			All = 1,
+			ForFinancialUnit = 2
+		}
+		public enum ModeRequestToWareHouse //el 020726
+		{
+			editable = 1,
+			read = 2
+		}
+		//el 020126
+		public enum CustomerRequestDetailMode
+		{
+			edit = 1,
+			add = 2,
+			read = 3,
+			ProductAdd = 5,
+			ProductEdit = 4,
+			ProductRead = 6,
+			CartableMode = 7,
+			FillData= 8
+		}
+		//el 020703
+		public enum RequestUrgency
+		{
+			usual = 3,
+			instantaneous = 1,
+			emergency = 2
+
+		}
+		public enum ModeWorkOrderCompare//RT011222
+		{
+			BOM = 1,
+			Test = 2
+		}
+		//RT000123
+		public static Dictionary<StatusEnum, string> ApprovedEnum = new Dictionary<StatusEnum, string>()
+		{
+			{StatusEnum.Unknown, ""},
+			{StatusEnum.Approved, "تایید"},
+			{StatusEnum.Reject, "رد"}
+		};
+
+		//RT000124
+
+		public enum PackingKindEnum
+		{
+			Unknown = 0,
+			Gallon = 1,
+			Thebarrel = 2, //بشکه
+			IBC = 3,
+			Reservoir = 4, //مخزن
+			Tanker = 5,
+			Bucket = 6 //Rt000513
+
+		}
+		//RT000124
+		public static Dictionary<PackingKindEnum, string> PackingKindDic = new Dictionary<PackingKindEnum, string>()
+		{
+			{PackingKindEnum.Unknown, ""},
+			{PackingKindEnum.Gallon, "خط(گالن-سطل)"},
+			{PackingKindEnum.Thebarrel, "بشکه"},
+			{PackingKindEnum.IBC, "IBC"},
+			{PackingKindEnum.Reservoir, "مخزن"},
+			{PackingKindEnum.Tanker, "تانکر"},
+			{PackingKindEnum.Bucket, "سطل"}
+		};
+
+		public enum RequestKindEnum //rt000220
+		{
+			SecondaryTest = 1,
+			NoWaiting = 2
+		}
+		public enum FormSamplingResultKindEnum //el 020704
+		{
+			ForLabratory = 1,
+			ForQC = 2
+		}
+		public enum TestOfSamplingEnum //RT000609
+		{
+			ManuFacturedSampling = 1,
+			PackingSampling = 2,
+			RawMaterial = 3, //rt000703
+			QcSampling = 4, //rt000801
+			Flashing = 5, //rt000921
+			CutomerClaim = 6, //rt010504
+			Standard = 7,//rt011105
+			EditMode = 8//el 020323
+		}
+
+		public enum BOMItemKindEnum //rt000622
+		{
+			BOMItemOp = 1,
+			BaseBOMItem = 2
+		}
+		public enum QCRequestKind //RT000628
+		{
+			Packing = 1,
+			RawMaterial = 2,
+			MaterialApplicant = 3, //rt000805
+			Standard = 4,//rt011119
+			EditPacking = 5, //el 020501
+			FinalProduct = 6 //el 020928
+		}
+		public enum IBCEnum //RT000901
+		{
+			Adding = 1,
+			Choosing = 2,
+			IsReadOnly = 3, //rt001006
+			Cp = 4
+		}
+		public enum IncompleteProductEnum //el 010823
+		{
+			Adding = 1,
+			Choosing = 2,
+			IsReadOnly = 3
+		}
+		public enum RequirementTypeEnum //Ash 01-11-26
+		{
+			DontNeedToConfirm = 1,
+			DataSheet = 2,
+			Sample = 3,
+			OpTest = 4
+		}
+		public enum TotalWorkOrderMode //Rt010307
+		{
+			Manufature = 1,
+			Packing = 2,
+			SearchWithBatchNo = 3//el 020531
+		}
+		public enum OrderEnum //RT001208
+		{
+			OldData = 1,
+			NewData = 2
+		}
+		//el 011217
+		public enum AddContactMode
+		{
+			Add = 1,
+			Edit = 2
+		}
+		//Ash 02-05-01
+		public enum AddPhoneNumberMode
+		{
+			Add = 1,
+			Edit = 2
+		}
+		//rt010420
+		public enum PackingTasks
+		{
+			ProductionManager = 1,
+			Inspector = 2,
+			ReadOnly = 3 //el 020622
+		}
+		public enum PackingTasksOpratormode
+		{
+			Packing = 1,
+			Production = 2
+		}
+		//el 020119
+		public enum RejectReasonCrmMode
+		{
+			CustomerRequest = 1,
+			Certificate = 2,
+			PlanningRequest = 3
+		}
+		public enum WorkOrderPackinghMode
+		{
+			Packing = 1,
+			AlternativeProduct = 2
+		}
+		/// <summary>
+		/// </summary>
+
+		//rt010801
+		public enum DetailListMode
+		{
+			Save = 1,
+			Show = 2,
+			OfficialMode = 3,
+			CastAndCredit = 4
+		}
+		//Public Enum WeeklyPredictKindEnum 'rt000303
+		//    Normal = 1
+		//    Transfer = 2
+		//End Enum
+
+		//el 010929
+		public enum DetaiOfMaterialEnum
+		{
+			AllRow = 1,
+			RequstFromWarehouse = 2,
+			AnswerFromWarehouse = 3
+		}
+
+		//el 010929
+		public enum ReportFinalProductMode
+		{
+			Packing = 1,
+			DetailOfMaterial = 2
+		}
+
+		//el 011207
+		public enum CustomerRequestMode
+		{
+			ReadOnly = 1,
+			Edit = 2,
+			Add = 3,
+			Copy = 4,
+			Cost = 5,
+			//Ash 02-08-30
+			FillData = 6
+		}
+	}
+	//END MBS 98-11-05
+
+
+}
