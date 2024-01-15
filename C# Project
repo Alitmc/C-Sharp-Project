@@ -19,7 +19,7 @@ namespace ProductionPlanning.Entities
 			///tets
 			///okokok
 		}
-		//rt011214
+		// 11214
 		public enum FormIncompleteProductEnum
 		{
 			Report = 1,
@@ -32,14 +32,14 @@ namespace ProductionPlanning.Entities
 			Maintenance = 3,
 			LinePacking = 4
 		}
-		//rt011118
+		// 11118
 		public enum StarndardQualityPlanMode
 		{
 			Test = 1,
 			Inspection = 2,
 			Readonly = 3
 		}
-		//rt001211
+		// 01211
 		public enum TraceBOMEnum
 		{
 			Report = 1,
@@ -54,19 +54,19 @@ namespace ProductionPlanning.Entities
 			SaveProduct = 4, //el 020629
 			ShowProduct = 5 //el 020629
 		}
-		//RT010308
+		// 10308
 		public enum RealBOMEnum
 		{
 			Manu = 1,
 			Packing = 2
 		}
-		//rt010129
+		// 10129
 		public enum OPCGroupMode
 		{
 			EditMode = 1,
 			ReadOnlyMode = 2
 		}
-		//rt010330
+		// 10330
 		public enum SelectMode
 		{
 			EditMode = 1,
@@ -79,7 +79,7 @@ namespace ProductionPlanning.Entities
 			HidePercent = 2,
 			HideBtn = 3
 		}
-		public enum QCActivityMode //Rt000704
+		public enum QCActivityMode // 00704
 		{
 			Inspector = 1,
 			Qc = 2
@@ -191,14 +191,14 @@ namespace ProductionPlanning.Entities
 
 			S109_QCManagerCorrectionConflict = 109, //Ash 99-06-11
 			S110_QCManagerEditCp = 110, //RT991112
-										// S111_CheckMaterialOutOfBOM = 111 'RT000407
-			S112_ConfirmByManager = 112, //rt000601
-			S113_CheckByPackingPlanner = 113, //rt000601
-			S117_TransferToHolder = 117,//rt010916
-			S114_communicatedPacking = 114, //rt000602
-			S118_Improvement = 118,//rt0109122
-			S119_PlanningPacking = 119,//rt011027
-			S120_PlanningPacking = 120,//rt011027
+										// S111_CheckMaterialOutOfBOM = 111 ' 00407
+			S112_ConfirmByManager = 112, // 00601
+			S113_CheckByPackingPlanner = 113, // 00601
+			S117_TransferToHolder = 117,// 10916
+			S114_communicatedPacking = 114, // 00602
+			S118_Improvement = 118,// 109122
+			S119_PlanningPacking = 119,// 11027
+			S120_PlanningPacking = 120,// 11027
 			S121 = 121,//Ash 02-04-21
 			S122 = 122,//Ash 02-04-24
 
@@ -248,48 +248,48 @@ namespace ProductionPlanning.Entities
 			S601_Appointpackaginginspector = 601, //RT991214
 			S602_Performpackaginginspection = 602, //'RT991214
 			S603_DonPacking = 603, //'RT991214
-			S604_ApprovedInspectionItem = 604, //RT000207
-			S605_UnadaptedLicense = 605, //RT000707
-			S111_CheckMaterialsOutsideOfBOM = 111, //RT000407
-												   //rt000603
+			S604_ApprovedInspectionItem = 604, // 00207
+			S605_UnadaptedLicense = 605, // 00707
+			S111_CheckMaterialsOutsideOfBOM = 111, // 00407
+												   // 00603
 			S701_SendThePackingProcess = 701,
 			S702_QCManager = 702,
 			S703_RecordCpDataPacking = 703,
-			S704_PerformpackaginginspectionPacking = 704, //rt000609
-			S705_ResolvedConflict = 705, //rt0000710
-			S706_QCManagerApprovedFinishPacking = 706, //rt000728
+			S704_PerformpackaginginspectionPacking = 704, // 00609
+			S705_ResolvedConflict = 705, // 000710
+			S706_QCManagerApprovedFinishPacking = 706, // 00728
 			S710_EndOfPacking = 710,
 			S801_SendRequest = 801,
-			S802_Appointpackaginginspector = 802, //rt000703
-			S803_DoneRawMaterial = 803, //rt000703
-			S804_EndPasckingOfRaewMaterial = 804, //rt000704
-			S805_UnadaptedLicense = 805, //RT000706
-			S115_TakeSampling = 115, //rt000724
-			S116_NeedToFlash = 116, //rt000830
-			S901_Send = 901, //rt000826
-			S902_GetSampling = 902, //rt000826
-			S1001_SendFlashRequest = 1001, //rt000830
-			S1002_Flashing = 1002, //rt000830
-			S1003_FinishFlashing = 1003, //rt000901
-			S1004_Weighing = 1004, //rt000915
-			S2001_SendRequestForUpgradePriority = 2001, //rt010311
-			S2002_ConfirmationUpgradePriority = 2002, //rt010311
-			S3001_SemiMnaufacturedPascking = 3001, //rt010324
-			S4001_StartSaleContractor = 4001, //rt010612
-			S4002_DeterminingBOM = 4002, //rt010612
-			S4003_DeterminingTimeDesirable = 4003, //rt010612
-			S4004_FinishSaleContractor = 4004, //rt010612
-											   //RT010710
+			S802_Appointpackaginginspector = 802, // 00703
+			S803_DoneRawMaterial = 803, // 00703
+			S804_EndPasckingOfRaewMaterial = 804, // 00704
+			S805_UnadaptedLicense = 805, // 00706
+			S115_TakeSampling = 115, // 00724
+			S116_NeedToFlash = 116, // 00830
+			S901_Send = 901, // 00826
+			S902_GetSampling = 902, // 00826
+			S1001_SendFlashRequest = 1001, // 00830
+			S1002_Flashing = 1002, // 00830
+			S1003_FinishFlashing = 1003, // 00901
+			S1004_Weighing = 1004, // 00915
+			S2001_SendRequestForUpgradePriority = 2001, // 10311
+			S2002_ConfirmationUpgradePriority = 2002, // 10311
+			S3001_SemiMnaufacturedPascking = 3001, // 10324
+			S4001_StartSaleContractor = 4001, // 10612
+			S4002_DeterminingBOM = 4002, // 10612
+			S4003_DeterminingTimeDesirable = 4003, // 10612
+			S4004_FinishSaleContractor = 4004, // 10612
+											   // 10710
 			S5001_DeterminingTheSubstituteProduct = 5001,
 			S5002_AlternativeProductApproval = 5002,
 			S5003_AlternativeProductFeasibility = 5003,
 			S5004_CompletionOfTheStage = 5004,
-			S5005_GetBatchNo = 5005,//rt010719
-									//RT010923
+			S5005_GetBatchNo = 5005,// 10719
+									// 10923
 			S6001_DefinitionBOM = 6001,
 			S6002_DefinitionOfProductItems = 6002,
-			S8001_InspectionStandard = 8001,//rt011119
-			S8002_Finish = 8002,//rt011119
+			S8001_InspectionStandard = 8001,// 11119
+			S8002_Finish = 8002,// 11119
 
 			//Ash 01-11-23
 			S7001 = 7001,
@@ -490,11 +490,11 @@ namespace ProductionPlanning.Entities
 			StockNeed = 1,
 			CustomersRequest = 2,
 			Planning = 3,
-			Predict = 4, //rt000302
-			ProductionRequest = 5, //rt000810
-			inquiry = 6, //rt010524
-			Contract = 7, //rt010612
-			System = 8 //rt010629
+			Predict = 4, // 00302
+			ProductionRequest = 5, // 00810
+			inquiry = 6, // 10524
+			Contract = 7, // 10612
+			System = 8 // 10629
 		}
 
 		public static string[] WorkOrderOriginKindTitle { get; set; } = new string[] { "", "نیاز انبار", "سفارش مشتری", "برنامه ریزی" };
@@ -623,7 +623,7 @@ namespace ProductionPlanning.Entities
 			Qurter = 3,
 			Month = 4
 		}
-		//RT001004
+		// 01004
 		public enum PauseMode
 		{
 			Manufactured = 1,
@@ -731,10 +731,10 @@ namespace ProductionPlanning.Entities
 			RawMaterial = 8,
 			DevelopmentAfRN = 9, //RT990926
 			TechnicalAdvice = 10, //MMT 99-10-01
-			PackingLine = 11, //rt000609
-			RawMaterialPacking = 12, //rt000628
-			Flashing = 13, //rt000921
-			CustomerClaim = 14,//rt010504
+			PackingLine = 11, // 00609
+			RawMaterialPacking = 12, // 00628
+			Flashing = 13, // 00921
+			CustomerClaim = 14,// 10504
 			Prototyping = 15, //el 020323
 			FinalProduct = 16 
 		}
@@ -742,8 +742,8 @@ namespace ProductionPlanning.Entities
 		public enum OriginForovertime
 		{
 			ProductionLine = 1,
-			PackingLine = 11, //rt000609
-			Flashing = 13, //rt000921
+			PackingLine = 11, // 00609
+			Flashing = 13, // 00921
 			Prototyping = 15 //el 020323
 		}
 
@@ -835,13 +835,13 @@ namespace ProductionPlanning.Entities
 			WeeklyPlan = 4,
 			License = 5, //RT991203
 			QCRequest = 6,
-			PackingLine = 7, //rt000606
-			QC_RequestRawMat = 8, //rt000703
-			Lab_RequestGetSample = 9, //rt000826
-			PrP_Flashing = 10, //rt000830
-			PrP_WeeklyPlanItem = 12, //rt010311
-			PrP_WeeklyPlanItemPackingRoutine = 16,//rt010710
-			QC_RequestStandard = 19, //rt011119
+			PackingLine = 7, // 00606
+			QC_RequestRawMat = 8, // 00703
+			Lab_RequestGetSample = 9, // 00826
+			PrP_Flashing = 10, // 00830
+			PrP_WeeklyPlanItem = 12, // 10311
+			PrP_WeeklyPlanItemPackingRoutine = 16,// 10710
+			QC_RequestStandard = 19, // 11119
 			Crm_CustomerRequest = 18, //Ash 01-11-23
 			Lab_Development = 20,//el 011126
 			Crm_Task = 21, //Ash 02-03-06
@@ -901,25 +901,25 @@ namespace ProductionPlanning.Entities
 			Lab_Development = 17,
 			Lab_DevSampleTest = 18,
 			PrP_WorkOrderPaking = 19,
-			QC_RequestRawMaterial = 20, //rt000703
-			Lab_RequestGetSample = 21, //rt000826
-			PrP_Flashing = 22, //rt000830
-			PrP_WeeklyPlanItem = 23, //RT010311
+			QC_RequestRawMaterial = 20, // 00703
+			Lab_RequestGetSample = 21, // 00826
+			PrP_Flashing = 22, // 00830
+			PrP_WeeklyPlanItem = 23, // 10311
 			PrP_WorkOrderSemi = 24,
 			//rabti b entiti in mored nadare
-			// baraye yadasht ezafe shode ast
-			//rt001218
+			// ba  e yadasht ezafe shode ast
+			// 01218
 			Pcl_CpActivity = 100,
 			PrP_CutomerClaim = 25,
-			PrP_SaleContract = 26, //rt010609
-			PrP_WeeklyPlanItemPackingRoutine = 27, //rt010711
-			PrP_WorkOrderPackingRoutine = 28, //rt010711
-			PrP_Product = 29,//rt010923
+			PrP_SaleContract = 26, // 10609
+			PrP_WeeklyPlanItemPackingRoutine = 27, // 10711
+			PrP_WorkOrderPackingRoutine = 28, // 10711
+			PrP_Product = 29,// 10923
 			Crm_CustomerRequest = 30,//el 011116
-			QC_RequestStandard = 31,//rt011119
+			QC_RequestStandard = 31,// 11119
 									//Crm_CustomerCertificateReq = 31, //el 011111
 			Crm_Contact = 32,
-			//el 010919 rt010923 b elat ink elam nashode bud va dar table asli entity nabud 
+			//el 010919  10923 b elat ink elam nashode bud va dar table asli entity nabud 
 
 			//Ash 01-12-10
 			Crm_CustomerCertificateDetails = 33,
@@ -993,7 +993,7 @@ namespace ProductionPlanning.Entities
 			Qualitative = 2,
 			Analysis = 3,
 			Graph = 4,
-			MultiAnswerTests = 5 //rt000719
+			MultiAnswerTests = 5 // 00719
 		}
 
 		public static Dictionary<ResultTypeEnum, string> ResultTypeTitle = new Dictionary<ResultTypeEnum, string>()
@@ -1058,19 +1058,19 @@ namespace ProductionPlanning.Entities
 			Approved = 1,
 			Rejected = 2
 		}
-		//rt000830
+		// 00830
 		public enum FlashingType
 		{
 			Oil = 1,
 			//AntiFreeze = 2,
 			Meg = 2, //el 021010
-			Gasoline = 3, //rt000909
-			Water = 4, //rt001008
-			GasolineOil = 5, //rt001013
-			Production = 6, //rt011004
+			Gasoline = 3, // 00909
+			Water = 4, // 01008
+			GasolineOil = 5, // 01013
+			Production = 6, // 11004
 			Antifreeze =7 //el 021010
 		}
-		//rt000927
+		// 00927
 		public enum FlashingStatus
 		{
 			Flashing = 1,
@@ -1112,7 +1112,7 @@ namespace ProductionPlanning.Entities
 			NotSpecified = 0,
 			MakedSample = 1
 		}
-		//rt010801
+		// 10801
 		public enum ProductFinalMode
 		{
 			Save = 1,
@@ -1138,7 +1138,7 @@ namespace ProductionPlanning.Entities
 			Basic = 1,
 			Operational = 2,
 			Development = 3, //Ash 99-06-02
-			Real = 4 //rt001120
+			Real = 4 // 01120
 		}
 
 		//Ash 99-03-12
@@ -1147,11 +1147,11 @@ namespace ProductionPlanning.Entities
 			Opc = 1,
 			Cp = 2,
 			CpOp = 3,
-			CPPacking = 4, //rt000613
-			CPPackingOp = 5 //rt000613
+			CPPacking = 4, // 00613
+			CPPackingOp = 5 // 00613
 
 		}
-		//rt001013
+		// 01013
 		public enum CpKind
 		{
 			ReadOnlyCp = 1,
@@ -1166,7 +1166,7 @@ namespace ProductionPlanning.Entities
 			Eng = 3,
 			ProductManager = 4,
 			Managger = 5,
-			Packing = 6 //rt000607
+			Packing = 6 // 00607
 		}
 
 		//Ash 99-04-16
@@ -1177,9 +1177,9 @@ namespace ProductionPlanning.Entities
 			//Ash 99-05-22
 			AdvanceReadOnly = 3,
 			NormalReadOnly = 4,
-			CPPackinOpReadOnly = 5 //rt000613
+			CPPackinOpReadOnly = 5 // 00613
 		}
-		//rt000613
+		// 00613
 		public enum CpOpPackingEnum
 		{
 			Foundation = 1,
@@ -1190,8 +1190,8 @@ namespace ProductionPlanning.Entities
 		{
 			EditCpByQc = 1,
 			CorrectionCpByQc = 2,
-			SamplingQC = 3, //rt000724
-			ImprovementQC = 4 //rt010922
+			SamplingQC = 3, // 00724
+			ImprovementQC = 4 // 10922
 		}
 
 		public enum CpActivityKindEnum //AT 99-04-07
@@ -1218,7 +1218,7 @@ namespace ProductionPlanning.Entities
 			B = 2,
 			C = 3
 		}
-		public enum AmendmentStatusEnum //RT010614
+		public enum AmendmentStatusEnum // 10614
 		{
 
 			CompletionOfProductionCapacity = 1,
@@ -1238,8 +1238,8 @@ namespace ProductionPlanning.Entities
 		{
 			EditByproductionManager = 1,
 			ReadOnlyMode = 2,
-			EditByproductionManagerPacking = 3, //rt000601
-			ReadOnlyByproductionManagerPacking = 4 //rt000609
+			EditByproductionManagerPacking = 3, // 00601
+			ReadOnlyByproductionManagerPacking = 4 // 00609
 		}
 		public enum GroupMmemberTest //RT990915
 		{
@@ -1263,7 +1263,7 @@ namespace ProductionPlanning.Entities
 			AllPacking = 2,
 			ForOne = 3
 		}
-		public enum KindOfReqTestIterElemenEnum //RT000719
+		public enum KindOfReqTestIterElemenEnum // 00719
 		{
 			Analys = 1,
 			MultiTests = 2
@@ -1278,7 +1278,7 @@ namespace ProductionPlanning.Entities
 		{
 			Unknown = 0,
 			Approved = 1
-			//Reject = 2'RT000117
+			//Reject = 2' 00117
 		}
 		//RT991204
 		public static Dictionary<EnumEng, string> EngDic = new Dictionary<EnumEng, string>()
@@ -1286,8 +1286,8 @@ namespace ProductionPlanning.Entities
 			{EnumEng.Unknown, ""},
 			{EnumEng.Approved, "تایید"}
 		};
-		//{EnumEng.Reject, "رد"}'RT000117
-		//rt010515
+		//{EnumEng.Reject, "رد"}' 00117
+		// 10515
 		public enum ProductDraft
 		{
 			AddNew = 1,
@@ -1300,18 +1300,18 @@ namespace ProductionPlanning.Entities
 			WeeklyPlanItem = 2,
 			YearNo = 3
 		}
-		public enum StatusEnum //RT000123
+		public enum StatusEnum // 00123
 		{
 			Unknown = 0,
 			Approved = 1,
 			Reject = 2
 		}
-		public enum KindOfPause //RT000628
+		public enum KindOfPause // 00628
 		{
 			Edit = 1,
 			ReadOnlyPause = 2
 		}
-		public enum ModeWareHouse //RT000711
+		public enum ModeWareHouse // 00711
 		{
 			WareHouse = 1,
 			sale = 2
@@ -1346,12 +1346,12 @@ namespace ProductionPlanning.Entities
 			emergency = 2
 
 		}
-		public enum ModeWorkOrderCompare//RT011222
+		public enum ModeWorkOrderCompare// 11222
 		{
 			BOM = 1,
 			Test = 2
 		}
-		//RT000123
+		// 00123
 		public static Dictionary<StatusEnum, string> ApprovedEnum = new Dictionary<StatusEnum, string>()
 		{
 			{StatusEnum.Unknown, ""},
@@ -1359,7 +1359,7 @@ namespace ProductionPlanning.Entities
 			{StatusEnum.Reject, "رد"}
 		};
 
-		//RT000124
+		// 00124
 
 		public enum PackingKindEnum
 		{
@@ -1369,10 +1369,10 @@ namespace ProductionPlanning.Entities
 			IBC = 3,
 			Reservoir = 4, //مخزن
 			Tanker = 5,
-			Bucket = 6 //Rt000513
+			Bucket = 6 // 00513
 
 		}
-		//RT000124
+		// 00124
 		public static Dictionary<PackingKindEnum, string> PackingKindDic = new Dictionary<PackingKindEnum, string>()
 		{
 			{PackingKindEnum.Unknown, ""},
@@ -1384,7 +1384,7 @@ namespace ProductionPlanning.Entities
 			{PackingKindEnum.Bucket, "سطل"}
 		};
 
-		public enum RequestKindEnum //rt000220
+		public enum RequestKindEnum // 00220
 		{
 			SecondaryTest = 1,
 			NoWaiting = 2
@@ -1394,37 +1394,37 @@ namespace ProductionPlanning.Entities
 			ForLabratory = 1,
 			ForQC = 2
 		}
-		public enum TestOfSamplingEnum //RT000609
+		public enum TestOfSamplingEnum // 00609
 		{
 			ManuFacturedSampling = 1,
 			PackingSampling = 2,
-			RawMaterial = 3, //rt000703
-			QcSampling = 4, //rt000801
-			Flashing = 5, //rt000921
-			CutomerClaim = 6, //rt010504
-			Standard = 7,//rt011105
+			RawMaterial = 3, // 00703
+			QcSampling = 4, // 00801
+			Flashing = 5, // 00921
+			CutomerClaim = 6, // 10504
+			Standard = 7,// 11105
 			EditMode = 8//el 020323
 		}
 
-		public enum BOMItemKindEnum //rt000622
+		public enum BOMItemKindEnum // 00622
 		{
 			BOMItemOp = 1,
 			BaseBOMItem = 2
 		}
-		public enum QCRequestKind //RT000628
+		public enum QCRequestKind // 00628
 		{
 			Packing = 1,
 			RawMaterial = 2,
-			MaterialApplicant = 3, //rt000805
-			Standard = 4,//rt011119
+			MaterialApplicant = 3, // 00805
+			Standard = 4,// 11119
 			EditPacking = 5, //el 020501
 			FinalProduct = 6 //el 020928
 		}
-		public enum IBCEnum //RT000901
+		public enum IBCEnum // 00901
 		{
 			Adding = 1,
 			Choosing = 2,
-			IsReadOnly = 3, //rt001006
+			IsReadOnly = 3, // 01006
 			Cp = 4
 		}
 		public enum IncompleteProductEnum //el 010823
@@ -1440,13 +1440,13 @@ namespace ProductionPlanning.Entities
 			Sample = 3,
 			OpTest = 4
 		}
-		public enum TotalWorkOrderMode //Rt010307
+		public enum TotalWorkOrderMode // 10307
 		{
 			Manufature = 1,
 			Packing = 2,
 			SearchWithBatchNo = 3//el 020531
 		}
-		public enum OrderEnum //RT001208
+		public enum OrderEnum // 01208
 		{
 			OldData = 1,
 			NewData = 2
@@ -1463,7 +1463,7 @@ namespace ProductionPlanning.Entities
 			Add = 1,
 			Edit = 2
 		}
-		//rt010420
+		// 10420
 		public enum PackingTasks
 		{
 			ProductionManager = 1,
@@ -1490,7 +1490,7 @@ namespace ProductionPlanning.Entities
 		/// <summary>
 		/// </summary>
 
-		//rt010801
+		// 10801
 		public enum DetailListMode
 		{
 			Save = 1,
@@ -1498,7 +1498,7 @@ namespace ProductionPlanning.Entities
 			OfficialMode = 3,
 			CastAndCredit = 4
 		}
-		//Public Enum WeeklyPredictKindEnum 'rt000303
+		//Public Enum WeeklyPredictKindEnum ' 00303
 		//    Normal = 1
 		//    Transfer = 2
 		//End Enum
